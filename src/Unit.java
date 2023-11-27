@@ -1,10 +1,6 @@
-public class Unit {
-    int health;
-    String name;
-
-    Unit() {
-        this(100, "A");
-    }
+public abstract class Unit implements Fight {
+    protected int health;
+    private String name;
 
     Unit(Unit other) {
         this.health = other.health;
@@ -16,8 +12,18 @@ public class Unit {
         this.name = name;
     }
 
-    public void print() {
-        System.out.printf("Health: %d\n", health);
-        System.out.printf("Name: %s\n", name);
+    public int getHealth() {
+        return health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "health=" + health +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,22 +1,36 @@
 public class Mage extends Unit{
-    int mana;
+    private int mana;
 
-    Mage() {
-        this(100, "B", 150);
-    }
-
-    Mage(Mage mage) {
-        this(mage.health, mage.name, mage.mana);
-    }
-
-    Mage(int health, String name, int mana) {
+    Mage(String name, int health, int mana) {
         super(health, name);
         this.mana = mana;
     }
 
     @Override
-    public void print() {
-        super.print();
-        System.out.printf("Mana: %d\n", mana);
+    public void doDamage(Unit unit) {
+        if (this.mana > 10) {
+            unit.getDamage(20);
+        } else {
+            unit.getDamage(5);
+        }
+        mana--;
+    }
+
+    @Override
+    public void getDamage(int damage) {
+        this.health -= damage;
+        this.health = Math.max(this.health, 0);
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    @Override
+    public String toString() {
+        return "Mage{" +
+                super.toString() +
+                "mana=" + mana +
+                '}';
     }
 }
